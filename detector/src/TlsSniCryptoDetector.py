@@ -93,7 +93,7 @@ class TlsSniCryptoDetector:
         """
         return [
             'BTC',
-            'ETC',
+            'ETH',
             'XMR',
             'RVN',
         ]
