@@ -1,5 +1,5 @@
 # Cryptominers Detector
-Cryptominers detection software consits of two NEMEA modules - detector and aggregator - and Python script used for IDEA reporting.
+DeCrypto (cryptominers detection software) is implemented as a [NEMEA](https://github.com/CESNET/Nemea) module.
 
 Before thes first run, Cython modules need to be compiled:
 ```
@@ -10,14 +10,28 @@ Detector takes as an input flows from exporter and sends to its output flows mar
 Aggregator takes as an input flows from detector and sends raw alerts to its output.
 IDEA reporter takes raw alerts from aggregator on its input and sends alerts to Warden system.
 
-Detector and aggregator have several customizable options, available via `-h` argument.
-
-## Example usage
+Detector has several customizable options, available via `-h` argument.
 ```
-# Detector with buffer size 100 000, DST threshold 0.42 and ML threshold 99.60% 
-./minerdetector.py -b 100000 -d 0.42 -t 0.996 -i u:flows_in,u:miner_flows
+usage: minerdetector.py [-h] [-m MODEL] [-b BUFFER] [-c] [-f] [-i I] [-d DST_THRESHOLD] [-t ML_THRESHOLD] [-v]
 
-# Aggregator with active timeout 10 flows and passive timeout 15 minuts
-# Connected to the output of detector
-./mineraggregator.py -a 10 -p 15 -i u:miners_flow,u:raw_miners_alerts
+optional arguments:
+  -h, --help            show this help message and exit
+  -m MODEL, --model MODEL
+                        Pickle file with ML model, default is ../models/data_symmetry.pickle
+  -b BUFFER, --buffer BUFFER
+                        Flow buffer size, default is 100000
+  -c, --use-dst-cache   Cache DST output and use as prefilter in ML
+  -f, --filter          Filter flows with DST PORT/443 without SNI
+  -i I                  IFC interfaces for pytrap
+  -d DST_THRESHOLD, --dst-threshold DST_THRESHOLD
+                        Threshold for miners' DST pignistic function [0..1], default is 0.03
+  -t ML_THRESHOLD, --ml-threshold ML_THRESHOLD
+                        Threshold for ML proba [0..1], default is 0.99
+  -v, --verify-mode     Run detector in verification mode, flow labels are required
 ```
+
+## Requirements
+* [cython](https://cython.org/)
+* [pandas](https://pandas.pydata.org/)
+* [pytrap](https://github.com/CESNET/Nemea-Framework/tree/34219c9a0db3dbab1d8e4de072a2d641f160002b/pytrap)
+* [re2](https://github.com/google/re2)
