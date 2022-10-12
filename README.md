@@ -35,3 +35,6 @@ optional arguments:
 * [pandas](https://pandas.pydata.org/)
 * [pytrap](https://github.com/CESNET/Nemea-Framework/tree/34219c9a0db3dbab1d8e4de072a2d641f160002b/pytrap)
 * [re2](https://github.com/google/re2)
+
+## Acknowledgements
+This research was funded by the Ministry of Interior of the Czech Republic, grant No. VJ02010024: Flow-Based Encrypted Traffic Analysis and also by the Grant Agency of the CTU in Prague, grant No. SGS20/210/OHK3/3T/18 funded by the MEYS of the Czech Republic.
