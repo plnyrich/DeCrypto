@@ -1,16 +1,10 @@
 # Cryptominers Detector
-DeCrypto (cryptominers detection software) is implemented as a [NEMEA](https://github.com/CESNET/Nemea) module.
+DeCrypto (cryptominers detection software) is implemented as a NEMEA module. The detector takes as input flows from the exporter and sends them to its output flows marked as a miner.
 
-Before thes first run, Cython modules need to be compiled:
-```
+Before the first run, Cython modules need to be compiled:
 ./configure.sh
-```
 
-Detector takes as an input flows from exporter and sends to its output flows marked as a miner.
-Aggregator takes as an input flows from detector and sends raw alerts to its output.
-IDEA reporter takes raw alerts from aggregator on its input and sends alerts to Warden system.
-
-Detector has several customizable options, available via `-h` argument.
+The detector has several customizable options, available via -h argument.
 ```
 usage: minerdetector.py [-h] [-m MODEL] [-b BUFFER] [-c] [-f] [-i I] [-d DST_THRESHOLD] [-t ML_THRESHOLD] [-v]
 
